@@ -1,9 +1,13 @@
-import './style.scss'
+import "./style.scss";
 
+import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 const PageNotFound = () => {
     return (
-        <div>
-            Page Not Found
+        <div className="pageNotFound">
+            <ContentWrapper>
+                <span className="bigText">404</span>
+                <span className="smallText">Page not found!</span>
+            </ContentWrapper>
         </div>
     )
 }
