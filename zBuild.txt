@@ -1,0 +1,252 @@
+Day 01 Date: 04/05/2023
+
++ Youtube       = https://www.youtube.com/watch?v=VLgVw2NEqCM&t=10393s&ab_channel=JSDevHindi
++ GitHub gist   = https://gist.github.com/ShariqAnsari88/09dbadfd81c41b399a30f6eb9f1f9548
++ GitHub        = https://github.com/ShariqAnsari88/movix/tree/main/src
++ API Docs      = https://developers.themoviedb.org/3/configuration/get-api-configuration
+
+#1- Project Setup:
+    - Vite.js
+    - Clear boilderplate code
+    - Assets/images
+    - GlobalCSS with sass
+    - index.html
+
+#2- GitHub Gist ( snippet )
+
+#3- TMDB API Setup and Configuration:
+    => Link: ( https://www.themoviedb.org/ )
+    + 3.1- Register and Login Account:
+        - Username: invokergod
+        - Email:    somchetra97@gmail.com
+        - Password: chetradeveloper
+
+    + 3.2- Settings: 
+        - Profile / Settings / API / :
+            • Overview tab / Request an API Key / Accept / filling information
+
+    + 3.3- Create environment variables with Vite.js (.env):
+        => Guide: ( https://vitejs.dev/guide/env-and-mode.html )
+        - VITE_APP_TMDB_TOKEN= TMDB (API Read Access Token (v4 auth))
+
+#4- TMDB API Setup - Axios
+    + utils / api.jsx:
+        - BASE_URL   = "https://api.themoviedb.org/3/";
+        - TMDB_TOKEN = import.meta.env.VITE_APP_TMDB_TOKEN;
+        - headers
+        - fetchDataFromApi()
+
+#5- TMDB API Setup - Testing:
+    + https://developers.themoviedb.org/3/movies/get-popular-movies
+    + fetchDataFromApi()
+
+#=========================> TMDB API <=========================#
+
+#6- Redux Toolkit setup.
+    + 6.1- Configuration store
+    + 6.2- homeSlice.jsx:
+        - getApiConfiguration() reducer
+        - getGenres() reducer
+
+    + 6.3- App.jsx = fetchDataFromApi()
+
+#7- Create components:
+    + header / Header.jsx + style.scss
+    + footer / Footer.jsx + style.scss
+
+#8- Create pages.
+
+#9- React-Router setup.
+
+#=========================> React-Router <=========================#
+
+#10- Homepage - HeroBanner section:
+    => Features: 
+        + FetchAPI with Redux
+        + Custom hooks fetch
+        + React LazyLoading
+        + Random Background Image
+
+    + Design webpage
+
+    => HeroBanner.jsx
+    + States ( local states ):
+        - Background state  = for set background.
+        - query state       = for control search input
+
+    + Events input:
+        - onChange={(e) => setQuery(e.target.value)}
+        - onKeyUp={searchQueryHandler}
+
+    + Custom hooks:
+        - useFetch
+
+    + FetchAPI custom hooks:
+        - GET https://developers.themoviedb.org/3/movies/get-upcoming
+        - const { data, loading } = useFetch("/movie/upcoming")
+
+    * RandomBackground + useEffect (BASE_URL + ID)
+
+    => App.jsx
+    + fetchAPI with redux. Configuration BASE_URL_IMAGES:
+        - https://developers.themoviedb.org/3/configuration/get-api-configuration
+        - fetchApiConfig()
+
+    => HeroBanner.jsx
+    + Refactor:
+        - const { url } = useSelector((state) => state.home);
+        - refactor RandomBackground
+
+    => React Lazy Loading Image:
+        - LazyLoadImg components
+
+    => ContentWrapper components
+
+#=========================> HeroBanner - Background Image API + LazyLoad <=========================#
+
+#11- Header.
+    => Features:
+        - Scroll Change Background
+        - Toggle Search box
+        - Toggle Menu
+        * If SearchBox open, close Menu
+        * If Menu open, close SearchBox
+
+    + Functionality:
+        + Search:
+            - openSearch()
+            - searchQueryHandler(event)
+        + Mobile Menu:
+            - openMobileMenu()
+            - navigateHandler(type)
+        + Toggle Scroll Bg
+            - ToggleScrollChangeBackground (Scroll up && Down)
+        + Stay top
+            - useLocation top (when link page)
+
+#=========================> Header with Functionality <=========================#
+
+=> Day 02 Date: 05/05/2023
+
+#12- Footer
+
+#13- Trending movie section - SwitchTabs.jsx
+    => Features:
+        - Switch Tabs
+        - Carousel
+        - Navigation( next, back )
+
+    + HomePage - Trending.jsx:
+        - SwitchTabs component
+        - Carousel component
+
+    + Trending.jsx:
+        => https://developers.themoviedb.org/3/trending/get-trending
+        - endpoint state
+        - useFetch hook
+        - onTabChange(tabl)
+        - Props:
+            • <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
+            • <Carousel data={data?.results} loading={loading} />
+
+    + SwitchTabs.jsx:
+        - Receive props
+        - States:
+            • selectedTab state
+            • left 
+        - activeTab()
+        - change style background-position-left via index
+        
+#14- Trending movie section - Main 
+    => Carousel.jsx
+        + Carousel slide
+        + Skeleton loading
+
+#15- Trending movie section - CircleRating
+    + CircleRating component:
+        - react-circular-progressbar
+        - props
+
+
+=> Day 03 Date: 06/05/2023
+
+#16- Trending movie section - Genre component ( !NOTE: Difficult One )
+    => App.jsx:
+        + https://developers.themoviedb.org/3/genres/get-movie-list
+        + Get Movie List = genresCall()
+    
+    => Import Genre.jsx to Carousel.jsx:
+        + Props
+
+    => Genre.jsx:
+        + Import useSelector
+
+#17- Carousel Section - Sliding Functionality:
+    + Carousel.jsx:
+        - navigation(dir)
+        - event handler
+
+#18- Homepage - Populate & Top Rated Section.
+    + Popular section = 
+        - https://developers.themoviedb.org/3/tv/get-popular-tv-shows
+        - change fetchAPI
+        - Props: endpoint
+    + TopRated section:
+        - https://developers.themoviedb.org/3/movies/get-top-rated-movies
+
+#=========================> HomePage <=========================#
+
+=> Day 04 Date: 07/05/2023
+
+#19- Details Page - Details Banner Section.
+    * https://developers.themoviedb.org/3/movies/get-movie-details
+    
+    => Details.jsx
+        > DetailsBanner.jsx:
+            - LazyLoadImg
+            - Genre
+            - CircleRating
+            - PlayBtn
+
+=> Day 05 Date: 08/05/2023
+
+        - Overview Text
+            - Info:
+                • status
+                • release_data
+                • run_times + function()
+        
+        > Details.jsx:
+            - useFetch - get details movie
+            - useFetch - get details credits(crew)
+            - Props to DetailsBanner
+
+        > DetailsBanner.jsx:
+            + Info - រកតួនាទី director & writer
+        
+            + Video Popup
+
+
+=> Day 06 Date: 09/05/2023:
+
+    + Details Page - Top Cast Section:
+        - pages / details / cast
+        - import to Details.jsx
+
+    + Details Page - Official Video section:
+        - page / details / videoSection
+
+    + Details Page - Similar & Recommendations Sections:
+        - page / details / carousel
+
+#20- Search Result Page
+    + Spinner.jsx
+    + MovieCard.jsx
+    + InfinitScroll
+
+#21- Explore Movies & TV Shows Page ( Concept and Understanding ) :
+    + react-select = for filtering
+
+#22- Creating Git Repo & Push all code in it
+
+#23- Deployment on Vercel
